@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World Explorer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="toast-container"></div>
+    <header>
+      <h1>World Explorer</h1>
+      <div class="search-container">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Rechercher un pays..."
+        />
+      </div>
+      <div class="filters">
+        <select id="regionFilter">
+          <option value="">Toutes les régions</option>
+          <option value="Africa">Afrique</option>
+          <option value="Americas">Amériques</option>
+          <option value="Asia">Asie</option>
+          <option value="Europe">Europe</option>
+          <option value="Oceania">Océanie</option>
+        </select>
+
+        <div class="sort-buttons">
+          <button id="sortNameAsc">Nom A-Z</button>
+          <button id="sortNameDesc">Nom Z-A</button>
+          <button id="sortPopAsc">Population ↑</button>
+          <button id="sortPopDesc">Population ↓</button>
+        </div>
+      </div>
+      <div class="display-options">
+        <label for="countryCount">Nombre de pays à afficher:</label>
+        <input type="range" id="countryCount" min="5" max="50" value="12" />
+        <span id="countValue">12</span>
+      </div>
+    </header>
+
+    <main id="countriesContainer">
+      <!-- Les cartes des pays seront générées ici -->
+      <!-- <div class="country-card">
+            <div class="flag-container">
+                <img src="https://flagcdn.com/w40/fr.png" alt="Drapeau de France">
+            </div>
+            <div class="country-info">
+                <h2>France</h2>
+                <p><strong>Capitale:</strong> Paris</p>
+                <p><strong>Population:</strong> 67 millions</p>
+                <p><strong>Région:</strong> Europe</p>
+            </div>
+        </div> -->
+    </main>
+
+    <section id="favoritesContainer">
+      <h2>Top Country Favorites</h2>
+      <div id="favoriteCountries" class="favorites-list"></div>
+    </section>
+
+    <footer>
+      <p>Projet World Explorer - Réalisé avec l'API REST Countries</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
