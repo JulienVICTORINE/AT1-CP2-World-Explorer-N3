@@ -66,6 +66,36 @@ function showToast(message, type = "success") {
   }, 2000);
 }
 
+//////////////////////////////////////////////
+// Mode sombre/clair pour l'application avec persistance de la préférence
+
+// Vérifier si l'utilisateur a déjà une préférence dans localStorage
+const currentTheme = localStorage.getItem("theme") || "light";
+
+// Appliquer le thème dès le chargement
+if (currentTheme === "dark") {
+  document.body.classList.add("dark-mode");
+} else {
+  document.body.classList.remove("dark-mode");
+}
+
+// Sélectionner le bouton pour changer de thème
+const themeToggleButton = document.getElementById("themeToggle");
+
+// Ajouter un gestionnaire d'événement pour changer le thème
+themeToggleButton.addEventListener("click", () => {
+  // Basculer entre les modes sombre et clair
+  document.body.classList.toggle("dark-mode");
+
+  // Enregistrer la préférence dans localStorage
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
+  }
+});
+////////////////////////////////////////////
+
 // Fonction pour récupérer les données de l'API
 async function fetchCountries() {
   try {
@@ -312,10 +342,6 @@ regionFilter.addEventListener("change", () => {
   selectedRegion = regionFilter.value;
   displayCountries();
 });
-
-////////////////
-// Ajout de l'événement pour supprimer un favori
-///////////////
 
 // ÉTAPE 8: Appelez la fonction pour récupérer les pays lorsque la page est chargée
 fetchCountries();
