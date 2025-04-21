@@ -69,28 +69,35 @@ function showToast(message, type = "success") {
 //////////////////////////////////////////////
 // Mode sombre/clair pour l'application avec persistance de la préférence
 
-// Vérifier si l'utilisateur a déjà une préférence dans localStorage
+const themeToggleButton = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+
+// Vérifier la préférence stockée
 const currentTheme = localStorage.getItem("theme") || "light";
 
-// Appliquer le thème dès le chargement
+// Appliquer le thème au chargement
 if (currentTheme === "dark") {
   document.body.classList.add("dark-mode");
+  themeIcon.classList.remove("fa-moon");
+  themeIcon.classList.add("fa-sun");
 } else {
   document.body.classList.remove("dark-mode");
+  themeIcon.classList.remove("fa-sun");
+  themeIcon.classList.add("fa-moon");
 }
 
-// Sélectionner le bouton pour changer de thème
-const themeToggleButton = document.getElementById("themeToggle");
-
-// Ajouter un gestionnaire d'événement pour changer le thème
+// Gérer le clic sur le bouton
 themeToggleButton.addEventListener("click", () => {
-  // Basculer entre les modes sombre et clair
   document.body.classList.toggle("dark-mode");
 
-  // Enregistrer la préférence dans localStorage
+  // Modifier l'icône selon le thème
   if (document.body.classList.contains("dark-mode")) {
+    themeIcon.classList.remove("fa-moon");
+    themeIcon.classList.add("fa-sun");
     localStorage.setItem("theme", "dark");
   } else {
+    themeIcon.classList.remove("fa-sun");
+    themeIcon.classList.add("fa-moon");
     localStorage.setItem("theme", "light");
   }
 });
