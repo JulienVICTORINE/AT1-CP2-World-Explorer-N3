@@ -48,13 +48,14 @@
 
       <div>
         <!-- <button id="themeToggle" style="color: white">🌙 / 🌞</button> -->
-        <button id="themeToggle" style="color: white">
+        <button id="themeToggle" style="color: red">
           <i id="themeIcon" class="fas fa-moon"></i>
         </button>
       </div>
     </header>
 
-    <main id="countriesContainer">
+    <main>
+      <div id="countriesContainer"></div>
       <!-- Les cartes des pays seront générées ici -->
       <!-- <div class="country-card">
         <div class="flag-container">
@@ -67,51 +68,15 @@
           <p><strong>Région:</strong> Europe</p>
         </div>
       </div> -->
-
-      <!-- Pour avoir une vue détaillé d'un pays sous forme de Modal -->
-      <!-- Carte du pays -->
-      <!-- <a href="#modal-france" class="country-card">
-        <div class="flag-container">
-          <img src="https://flagcdn.com/w320/fr.png" alt="Drapeau de France" />
-        </div>
-        <div class="country-info">
-          <h2>France</h2>
-          <p><strong>Capitale:</strong> Paris</p>
-          <p><strong>Population:</strong> 67 millions</p>
-          <p><strong>Région:</strong> Europe</p>
-        </div>
-      </a> -->
-
-      <!-- Modal caché pour ce pays -->
-      <!-- <div id="modal-france" class="modal">
-        <div class="modal-content">
-          <a href="#" class="close-modal">&times;</a>
-          <img
-            src="https://flagcdn.com/w320/fr.png"
-            alt="Drapeau de France"
-            class="modal-flag"
-          />
-          <h2>France</h2>
-          <p><strong>Capitale:</strong> Paris</p>
-          <p><strong>Population:</strong> 67 millions</p>
-          <p><strong>Région:</strong> Europe</p>
-          <p><strong>Langues:</strong> Français</p>
-          <p><strong>Monnaie:</strong> Euro (€)</p>
-          <p><strong>Fuseau horaire:</strong> GMT+1</p>
-        </div>
-      </div> -->
-
-      <!-- Modal Structure -->
-      <!-- Modal pour la vue détaillée -->
-      <!-- <div id="modal" class="modal hidden">
-        <div class="modal-content">
-          <span id="modalClose" class="close">&times;</span>
-          <div id="modalBody"> -->
-      <!-- Le contenu dynamique de la modal sera injecté ici -->
-      <!-- </div>
-        </div>
-      </div> -->
     </main>
+
+    <!-- Pour avoir une vue détaillé d'un pays sous forme de Modal -->
+    <div id="countryModal" class="modal">
+      <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <div id="modalBody"></div>
+      </div>
+    </div>
 
     <section id="favoritesContainer">
       <h2>Top Country Favorites</h2>

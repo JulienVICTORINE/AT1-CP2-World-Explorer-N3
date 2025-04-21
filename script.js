@@ -34,6 +34,11 @@ let favoriteCountries = [];
 
 const toastContainer = document.getElementById("toast-container");
 
+// Sélectionner la modale et ses éléments
+const modal = document.getElementById("countryModal");
+const modalBody = document.getElementById("modalBody");
+const closeModalBtn = document.getElementById("closeModal");
+
 // Charger les favoris au démarrage depuis localStorage
 // Quand la page se charge, on récupère la liste enregistrée
 // S'il y a des favorites enregistrés, je les remets en mémoire au démarrage
@@ -247,6 +252,7 @@ function displayCountries() {
             data-country-name="${nomPays}">
             ❤️
           </button>
+          <button class="details-btn" data-country-name="${nomPays}" style="cursor: pointer;">Voir détails</button>        
         </div>
       </div>
     `;
@@ -262,13 +268,26 @@ function displayCountries() {
       toggleFavorite(countryName);
     });
   });
+
+  // Ajouter événement sur bouton Voir détails
+  document.querySelectorAll(".details-btn").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const countryName = e.target.getAttribute("data-country-name");
+      const selectedCountry = allcountries.find(
+        (c) => c.translations.fra.common === countryName
+      );
+      if (selectedCountry) {
+        openModal(selectedCountry);
+      }
+    });
+  });
 }
 
 // Afficher les favoris
 function displayFavorites() {
   favoriteCountriesContainer.innerHTML = "";
 
-  if (favoriteCountries.length === 0) {
+  if (favoriteCountries.length == 0) {
     favoriteCountriesContainer.innerHTML =
       "<p>Aucun pays favori sélectionné.</p>";
     return;
@@ -304,6 +323,39 @@ function displayFavorites() {
     favoriteCountriesContainer.appendChild(favoriteCard);
   });
 }
+
+// Fonction pour ouvrir la modale
+function openModal(countryData) {
+  modal.style.display = "block";
+
+  // Exemples de données affichées dans la modale
+  modalBody.innerHTML = `
+    <h2>${countryData.translations.fra.common}</h2>
+    <p><strong>Capitale:</strong> ${
+      countryData.capital ? countryData.capital[0] : "Inconnue"
+    }</p>
+    <p><strong>Population:</strong> ${formatNumber(countryData.population)}</p>
+    <p><strong>Région:</strong> ${countryData.region}</p>
+    <img src="${countryData.flags.png}" alt="Drapeau de ${
+    countryData.translations.fra.common
+  }" style="width:100%; margin-top:10px;">
+  `;
+}
+
+// Fonction pour fermer la modale
+function closeModal() {
+  modal.style.display = "none";
+}
+
+// Quand on clique sur le bouton (X)
+closeModalBtn.addEventListener("click", closeModal);
+
+// Fermer la modale si on clique à l'extérieur
+window.addEventListener("click", (e) => {
+  if (e.target == modal) {
+    closeModal();
+  }
+});
 
 // ÉTAPE 7: Ajoutez un écouteur d'événement au curseur pour changer le nombre de pays affiché
 // addEventListener
